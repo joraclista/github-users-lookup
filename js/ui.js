@@ -1,12 +1,17 @@
 class UI {
-    constructor(profileContainer) {
+    constructor(profileContainer, userRepos, alerts) {
         this.profileContainer = profileContainer;
+        this.userRepos = userRepos;
         this.alerts = alerts;
     }
 
 
     formatText(text) {
-        return typeof text != "undefined" && text != null ? text : '';
+        return typeof text != "undefined" && text != null ? text : 'n/a';
+    }
+
+    formatDate(date) {
+        return typeof date != "undefined" && date != null ? (new Date(date)).toLocaleString("ru-RU",{dateStyle:"short"}) : 'n/a';
     }
 
     showProfile(userProfile) {
@@ -40,7 +45,7 @@ class UI {
                                             <div class="col-md-9">
                                                 <div>${this.formatText(userProfile.name)}</div>
                                                 <div>${this.formatText(userProfile.bio)}</div>
-                                                <div>${userProfile.created_at}</div>
+                                                <div>${this.formatDate(userProfile.created_at)}</div>
                                                 <div>${this.formatText(userProfile.email)}</div>
                                                 <div>${this.formatText(userProfile.blog)}</div>
                                                 <div> ${this.formatText(userProfile.location)}</div>
@@ -57,6 +62,35 @@ class UI {
 
     clearProfile() {
         this.profileContainer.innerHTML = '';
+      //  this.alerts.innerHTML = '';
+        this.userRepos.innerHTML = '';
+    }
+
+    showRepos(repos) {
+        this.userRepos.innerHTML = repos.map(repo => `<div class="card card-body text-muted">
+                                <div class="row">
+                                    <div class="col-md-3">                                        
+                                        <a href="${repo.html_url}" 
+                                           target="_blank" 
+                                           class="btn btn-primary btn-block">${repo.name}</a>
+                                    </div>
+                                    <div class="col-md-3">                                        
+                                        <div>Description:</div>
+                                        <div>Language:</div>
+                                        <div>Created:</div>
+                                        <div>Updated:</div>
+                                    </div>
+                                    <div class="col-md-6">                                        
+                                        <div>${this.formatText(repo.description)}</div>
+                                        <div>${this.formatText(repo.language)}</div>
+                                        <div>${this.formatDate(repo.created_at)}</div>
+                                        <div>${this.formatDate(repo.updated_at)}</div>
+                                    </div>
+                                 </div>                    
+                            </div>
+                            `)
+            .join('');
+
     }
 
     showAlert(message, _type) {
@@ -83,7 +117,7 @@ class UI {
 
     clearAlert(alert) {
         try {
-            alerts.removeChild(alert);
+            this.alerts.removeChild(alert);
         } catch (e) {
             console.error('clearAlert: Error while removing alert message: ', e);
         }
