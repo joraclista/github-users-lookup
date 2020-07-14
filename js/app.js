@@ -1,4 +1,4 @@
-const github = new Github
+const github = new Github;
 
 const githubUserName = document.getElementById("githubUserName");
 const userProfileContainer = document.getElementById("profile");
@@ -8,38 +8,50 @@ const ui = new UI(userProfileContainer, userRepos, alerts);
 
 githubUserName.addEventListener("keyup", onUserKeyUp);
 
-//TODO: add client secret to use github api
+function responseMessageIsOk(message) {
+    if (typeof message !== "undefined" && message.trim().length > 0)  {
+        console.log(`checkHttpResponseMessage: ${message}`);
+        ui.clearProfile();
+        ui.showAlert(message, "danger");
+        return false;
+    }
+    return true;
+}
 
-function onUserKeyUp(e) {
+
+function getUserProfileInfo(username, callback) {
+    github.getUser(username)
+        .then(user => {
+            if (responseMessageIsOk(user.userProfile.message)) {
+                console.log("getUserProfileInfo: ", user);
+                ui.showProfile(user.userProfile);
+                if (typeof callback !== "undefined" && callback != null) {
+                    callback();
+                }
+            }
+        });
+}
+
+
+function getUserReposInfo(username, callback) {
+    github.getUserRepos(username)
+        .then(user => {
+            if (responseMessageIsOk(user.userRepos.message)) {
+                console.log("getUserReposInfo:", user.userRepos);
+                ui.showRepos(user.userRepos);
+                if (typeof callback !== "undefined" && callback != null) {
+                    callback();
+                }
+            }
+        });
+}
+
+function onUserKeyUp (e) {
     console.log(`onUserKey: e.target=${e.target}`);
 
     const username = e.target.value;
 
-    if (username.trim() != '') {
-        github.getUser(username)
-            .then(user => {
-                if (typeof user.userProfile.message != "undefined" && user.userProfile.message.toLowerCase() === 'not found')  {
-                    console.log("user profile : User Not Found");
-                    ui.clearProfile();
-                    ui.showAlert("User Not Found", "danger");
-                } else {
-                    console.log("user profile :", user);
-                    ui.showProfile(user.userProfile);
-                }
-
-            });
-        github.getUserRepos(username)
-            .then(user => {
-                if (typeof user.userRepos.message != "undefined" && user.userRepos.message.toLowerCase() === 'not found')  {
-                    console.log("user repos : Repos Not Found");
-                    ui.clearProfile();
-                   // ui.showAlert("User Not Found", "danger");
-                } else {
-                    console.log("user repos :", user.userRepos);
-                    ui.showRepos(user.userRepos);
-                }
-
-            })
-
+    if (username.trim() !== '') {
+        getUserProfileInfo(username, () => getUserReposInfo(username));
     }
 }
