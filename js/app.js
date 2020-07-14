@@ -2,6 +2,8 @@ const github = new Github
 
 const githubUserName = document.getElementById("githubUserName");
 const userProfileContainer = document.getElementById("profile");
+const alerts = document.getElementById("alerts");
+const ui = new UI(userProfileContainer, alerts);
 
 githubUserName.addEventListener("keyup", onUserKeyUp);
 
@@ -17,12 +19,11 @@ function onUserKeyUp(e) {
             .then(user => {
                 if (typeof user.userProfile.message != "undefined" && user.userProfile.message.toLowerCase() === 'not found')  {
                     console.log("user profile : User Not Found");
-                    //TODO clear previous profile data
-                    userProfileContainer.innerHTML = '';
+                    ui.clearProfile();
+                    ui.showAlert("User Not Found", "danger");
                 } else {
                     console.log("user profile :", user);
-                    //TODO show profile
-                    new UI().showProfile(userProfileContainer, user.userProfile);
+                    ui.showProfile(user.userProfile);
                 }
 
             })
