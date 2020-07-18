@@ -1,6 +1,6 @@
 const settings = {
     baseUrl :  "https://api.github.com/",
-    token : '9fb9e21cd6ba57c4bdbcc54ea28e2e755eef4dc1',
+    token : 'e1a3f960fefcf5425d60f4f62c1594163e88750c',
     reposCount : 5,
     sort : 'created:desc'
 };
