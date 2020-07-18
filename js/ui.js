@@ -1,17 +1,11 @@
+import * as format from "./format.js";
+
 export default class UI {
+
     constructor(profileContainer, userRepos, alerts) {
         this.profileContainer = profileContainer;
         this.userRepos = userRepos;
         this.alerts = alerts;
-    }
-
-
-    static formatText(text) {
-        return typeof text !== "undefined" && text != null ? text : 'n/a';
-    }
-
-    static formatDate(date) {
-        return typeof date !== "undefined" && date != null ? (new Date(date)).toLocaleString("ru-RU",{dateStyle:"short"}) : 'n/a';
     }
 
     showProfile(userProfile) {
@@ -43,17 +37,16 @@ export default class UI {
                                                 <div>Location:</div>
                                             </div>
                                             <div class="col-md-9">
-                                                <div>${UI.formatText(userProfile.name)}</div>
-                                                <div>${UI.formatText(userProfile.bio)}</div>
-                                                <div>${UI.formatDate(userProfile.created_at)}</div>
-                                                <div>${UI.formatText(userProfile.email)}</div>
-                                                <div>${UI.formatText(userProfile.blog)}</div>
-                                                <div> ${UI.formatText(userProfile.location)}</div>
+                                                <div>${format.formatText(userProfile.name)}</div>
+                                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${format.formatText(userProfile.bio)}</div>
+                                                <div>${format.formatDate(userProfile.created_at)}</div>
+                                                <div>${format.formatText(userProfile.email)}</div>
+                                                <div>${format.formatText(userProfile.blog)}</div>
+                                                <div> ${format.formatText(userProfile.location)}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>`;
 
     }
@@ -79,10 +72,10 @@ export default class UI {
                                         <div>Updated:</div>
                                     </div>
                                     <div class="col-md-6">                                        
-                                        <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${UI.formatText(repo.description)}</div>
-                                        <div>${UI.formatText(repo.language)}</div>
-                                        <div>${UI.formatDate(repo.created_at)}</div>
-                                        <div>${UI.formatDate(repo.updated_at)}</div>
+                                        <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${format.formatText(repo.description)}</div>
+                                        <div>${format.formatText(repo.language)}</div>
+                                        <div>${format.formatDate(repo.created_at)}</div>
+                                        <div>${format.formatDate(repo.updated_at)}</div>
                                     </div>
                                  </div>                    
                             </div>
@@ -92,7 +85,7 @@ export default class UI {
     }
 
     showAlert(message, _type) {
-        let type = typeof _type === "undefined" || _type == null ? 'secondary' : _type;
+        let type = typeof _type == "undefined" || _type == null ? 'secondary' : _type;
         let alert = document.createElement('div');
         let btn = document.createElement('button');
         let txt = document.createElement('span');
