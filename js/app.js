@@ -1,10 +1,15 @@
-const github = new Github;
+import settings from './settings.js';
+import Github from './github.js'
+import UI from './ui.js'
+
 
 const githubUserName = document.getElementById("githubUserName");
 const userProfileContainer = document.getElementById("profile");
 const userRepos = document.getElementById("repos");
 const alerts = document.getElementById("alerts");
+
 const ui = new UI(userProfileContainer, userRepos, alerts);
+const github = new Github(settings);
 
 githubUserName.addEventListener("keyup", onUserKeyUp);
 

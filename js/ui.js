@@ -1,4 +1,4 @@
-class UI {
+export default class UI {
     constructor(profileContainer, userRepos, alerts) {
         this.profileContainer = profileContainer;
         this.userRepos = userRepos;
@@ -117,4 +117,4 @@ class UI {
     clearAlerts() {
         this.alerts.innerHTML = '';
     }
-}
+};
