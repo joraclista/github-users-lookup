@@ -12,7 +12,8 @@
     },
     "rules": {
 	    "linebreak-style": ["error", "windows"],
-		"require-jsdoc" : 0
+		"require-jsdoc" : "off",
+		"max-len": ["warn", { "code": 80 }]
     }
 }
 
