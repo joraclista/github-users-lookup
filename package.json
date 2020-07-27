@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "npx eslint js/format.js -f node_modules/eslint-html-reporter/reporter.js -o report.html"
+    "eslint": "npx eslint js -f node_modules/eslint-html-reporter/reporter.js -o report.html"
   },
   "repository": {
     "type": "git",
