@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "npx eslint js -f node_modules/eslint-html-reporter/reporter.js -o report.html"
+    "eslint": "npx eslint js -f node_modules/eslint-html-reporter/reporter.js -o report.html",
+	"start": "lite-server"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-google": "^0.14.0",
     "eslint-html-reporter": "^0.7.4",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint-plugin-import": "^2.22.0",
+    "lite-server": "^2.5.4"
   }
 }

@@ -13,7 +13,7 @@ const github = new Github(settings);
 githubUserName.addEventListener('keyup', onUserKeyUp);
 
 function responseMessageIsOk(message) {
-  if (!message) {
+  if (message) {
     console.log(`checkHttpResponseMessage: ${message}`);
     ui.clearProfile();
     ui.showAlert(message, 'danger');
@@ -29,7 +29,7 @@ function getUserProfileInfo(username, callback) {
         if (responseMessageIsOk(user.userProfile.message)) {
           console.log('getUserProfileInfo: ', user);
           ui.showProfile(user.userProfile);
-          if (!callback) {
+          if (callback) {
             callback();
           }
         }
@@ -43,7 +43,7 @@ function getUserReposInfo(username, callback) {
         if (responseMessageIsOk(user.userRepos.message)) {
           console.log('getUserReposInfo:', user.userRepos);
           ui.showRepos(user.userRepos);
-          if (!callback) {
+          if (callback) {
             callback();
           }
         }
