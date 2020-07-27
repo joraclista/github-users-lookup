@@ -1,13 +1,12 @@
-const locale = "ru-RU";
+const locale = 'ru-RU';
 
 export function formatText(text) {
-    return typeof text != "undefined" && text != null ? text : 'n/a';
+  return text == null ? 'n/a' : text;
 }
 
 export function formatDate(date) {
-    return typeof date != "undefined" && date != null ? (new Date(date)).toLocaleString(locale, {dateStyle:"short"}) : 'n/a';
+  if (date == null) {
+    return 'n/a';
+  }
+  return (new Date(date)).toLocaleString(locale, {dateStyle: 'short'});
 }
-
-
-
-

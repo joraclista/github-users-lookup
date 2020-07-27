@@ -25,6 +25,7 @@
   "devDependencies": {
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-html-reporter": "^0.7.4",
     "eslint-plugin-import": "^2.22.0"
   }

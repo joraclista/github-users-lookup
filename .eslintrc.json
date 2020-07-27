@@ -4,13 +4,15 @@
         "es2020": true
     },
     "extends": [
-        "airbnb-base"
+        "google"
     ],
     "parserOptions": {
         "ecmaVersion": 11,
         "sourceType": "module"
     },
     "rules": {
-	    "linebreak-style": ["error", "windows"]
+	    "linebreak-style": ["error", "windows"],
+		"require-jsdoc" : 0
     }
 }
+
