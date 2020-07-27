@@ -5,7 +5,7 @@ export default class Github {
     this.token = settings.token;
     this.baseUrl = settings.baseUrl;
     this.headers = {
-      headers: {authorization: `token ${this.token}`},
+      //headers: {authorization: `token ${this.token}`},
     };
   }
 
