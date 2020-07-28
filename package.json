@@ -5,9 +5,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --require esm",
     "eslint": "npx eslint js -f node_modules/eslint-html-reporter/reporter.js -o report.html",
-	"start": "lite-server"
+    "start": "lite-server"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,8 @@
     "eslint-config-google": "^0.14.0",
     "eslint-html-reporter": "^0.7.4",
     "eslint-plugin-import": "^2.22.0",
-    "lite-server": "^2.5.4"
+    "esm": "^3.2.25",
+    "lite-server": "^2.5.4",
+    "mocha": "^8.0.1"
   }
 }
