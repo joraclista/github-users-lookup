@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "mocha --require esm",
+    "test": "mocha --require esm --reporter mochawesome",
     "eslint": "npx eslint js -f node_modules/eslint-html-reporter/reporter.js -o report.html",
     "start": "lite-server"
   },
@@ -31,6 +31,7 @@
     "eslint-plugin-import": "^2.22.0",
     "esm": "^3.2.25",
     "lite-server": "^2.5.4",
-    "mocha": "^8.0.1"
+    "mocha": "^8.0.1",
+    "mochawesome": "^6.1.1"
   }
 }
