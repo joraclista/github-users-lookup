@@ -5,7 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "mocha --require esm --reporter mochawesome",
+    "test": "mocha --require esm --reporter mochawesome --reporter-options reportDir=test-report,reportFilename=index",
+	"test-and-show": "npm run test && lite-server -c test-bs-config.json",
     "eslint": "npx eslint js -f node_modules/eslint-html-reporter/reporter.js -o report.html",
     "start": "lite-server"
   },
